@@ -11,18 +11,28 @@
   ],
   "activationEvents": [
     "onCommand:toms-tools.toggleCommentStyle",
-    "onCommand:toms-tools.toggleTestFile"
+    "onCommand:toms-tools.toggleTestFile",
+    "onCommand:toms-tools.runTestFile",
+    "onCommand:toms-tools.runTestFileWatch"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "toms-tools.toggleCommentStyle",
-        "title": "Toggle comment style"
+        "title": "TOM: Toggle comment style"
       },
       {
         "command": "toms-tools.toggleTestFile",
-        "title": "Toggle test file"
+        "title": "TOM: Toggle test file"
+      },
+      {
+        "command": "toms-tools.runTestFile",
+        "title": "TOM: Run test file"
+      },
+      {
+        "command": "toms-tools.runTestFileWatch",
+        "title": "TOM: Run test file and watch"
       }
     ],
     "menus": {
@@ -41,7 +51,7 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "package": "npm run compile && vsce package"
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
