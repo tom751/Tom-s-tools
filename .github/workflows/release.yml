@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The new version in 0.0.0 format'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: npm install
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci 
+      - name: Build
+        run: npm run compile
+      - run: npm run package ${{ github.event.inputs.version }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: "*.vsix"
