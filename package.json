@@ -3,6 +3,11 @@
   "displayName": "Tom's tools",
   "description": "Tools for Tom",
   "version": "1.1.0",
+  "license": "See LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tom751/Tom-s-tools.git"
+  },
   "engines": {
     "vscode": "^1.65.0"
   },
