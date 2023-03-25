@@ -26,10 +26,16 @@ jobs:
           node-version: 18
       - run: npm ci 
       - run: npm run package -m "Release ${{ github.event.inputs.version }}" ${{ github.event.inputs.version }}
-      - run: git push --follow-tags
-      - name: Create release
-        uses: softprops/action-gh-release@v1
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v4
         with:
-          tag_name: v${{ github.event.inputs.version }}
-          files: "*.vsix"
-          generate_release_notes: true
+          commit-message: Create release v${{ github.event.inputs.version }}
+          branch: release/v${{ github.event.inputs.version }}
+          delete-branch: true
+          title: Create release v${{ github.event.inputs.version }}
+          labels: Release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-v${{ github.event.inputs.version }}
+          path: "*.vsix"
