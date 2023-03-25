@@ -1,4 +1,4 @@
-name: Release
+name: Schedule release
 
 on:
   workflow_dispatch:
@@ -15,6 +15,9 @@ jobs:
       matrix:
         node-version: [18.x]
 
+    env:
+      VERSION: v${{ github.event.inputs.version }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,12 +27,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci 
-      - run: npm run package -m "Release ${{ github.event.inputs.version }}" ${{ github.event.inputs.version }}
-      - run: git push --follow-tags
-      - name: Create release
-        uses: softprops/action-gh-release@v1
+      - run: npm version -m "Update version to $VERSION" ${{ github.event.inputs.version }}
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v4
         with:
-          tag_name: v${{ github.event.inputs.version }}
-          files: "*.vsix"
-          generate_release_notes: true
+          commit-message: Create release $VERSION
+          branch: release/$VERSION
+          delete-branch: true
+          title: Create release $VERSION
+          body: Updates version to $VERSION
+          labels: Release
+
