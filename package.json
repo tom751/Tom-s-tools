@@ -2,7 +2,7 @@
   "name": "toms-tools",
   "displayName": "Tom's tools",
   "description": "Tools for Tom",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "See LICENSE.txt",
   "repository": {
     "type": "git",
