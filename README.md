@@ -41,3 +41,13 @@ to
 ### Run test file and watch
 
 `Run test file and watch`: The same as "run test file" but adds `--watch` to the end of the command.
+
+## Intellisense
+
+### Monorepo go to definition improvements
+
+Improves go to definition functionality in vscode for monorepos. Configure path aliases under a new setting `tom.goToDefinition.pathAliases` with the key being the alias, and the value being the path to the folder within your workspace.
+
+For example '@core' being the alias and 'src/projects/core/src' being the path.
+
+If multiple definitions found, you can change `editor.gotoLocation.multipleDefinitions` to `goto`.

@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
+import TsMonorepoDefinitionProvider from './tsMonorepoDefinitionProvider'
 import runTestFile from './runTestFile'
 import ScssVarDefinitionProvider from './scssVarDefinitionProvider'
 import toggleCommentStyle from './toggleCommentStyle'
@@ -26,7 +27,13 @@ export function activate(context: vscode.ExtensionContext) {
     ['vue', 'scss'],
     new ScssVarDefinitionProvider(),
   )
+  const defProvider = vscode.languages.registerDefinitionProvider(
+    ['javascript', 'typescript', 'vue'],
+    new TsMonorepoDefinitionProvider(),
+  )
+
   context.subscriptions.push(scssVarDefinitionProvider)
+  context.subscriptions.push(defProvider)
 }
 
 // this method is called when your extension is deactivated
