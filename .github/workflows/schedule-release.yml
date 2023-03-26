@@ -31,10 +31,10 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: Create release $VERSION
+          commit-message: "Create release $VERSION"
           branch: release/$VERSION
           delete-branch: true
-          title: Create release $VERSION
-          body: Updates version to $VERSION
+          title: "Create release $VERSION"
+          body: "Updates version to $VERSION"
           labels: Release
 
