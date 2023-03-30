@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { searchForVar } from './utils/search'
 
 export default class TsMonorepoDefinitionProvider implements vscode.DefinitionProvider {
   async provideDefinition(
@@ -37,15 +38,19 @@ export default class TsMonorepoDefinitionProvider implements vscode.DefinitionPr
 
     const foundFiles = await vscode.workspace.findFiles(glob)
     if (foundFiles.length > 0) {
-      // TODO - navigate to export in file
-      console.log('found')
+      const wordRange = document.getWordRangeAtPosition(position)
+      const importName = document.getText(new vscode.Range(wordRange!.start, wordRange!.end))
+
+      const fileUri = foundFiles[0]
+      const doc = await vscode.workspace.openTextDocument(fileUri)
+      const startsWith = ['export', 'const', 'let', 'var']
+      const location = searchForVar(doc, importName, startsWith)
       return {
-        uri: foundFiles[0],
-        range: new vscode.Range(0, 0, 0, 0),
+        uri: fileUri,
+        range: location?.range || new vscode.Range(0, 0, 0, 0),
       }
-    } else {
-      console.log('found nothing')
-      return []
     }
+
+    return []
   }
 }

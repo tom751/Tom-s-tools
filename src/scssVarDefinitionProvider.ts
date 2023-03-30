@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { searchForVar } from './utils/search'
 
 export default class ScssVarDefinitionProvider implements vscode.DefinitionProvider {
   async provideDefinition(
@@ -29,18 +30,7 @@ export default class ScssVarDefinitionProvider implements vscode.DefinitionProvi
 
     const fileUri = foundFiles[0]
     const doc = await vscode.workspace.openTextDocument(fileUri)
-    const location = this.searchForVar(doc, varName)
+    const location = searchForVar(doc, varName)
     return location ? [location] : []
-  }
-
-  private searchForVar(doc: vscode.TextDocument, varName: string) {
-    const lines = doc.getText().split('\n')
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i]
-      if (line.includes(varName)) {
-        return new vscode.Location(doc.uri, new vscode.Position(i, 0))
-      }
-    }
-    return null
   }
 }
