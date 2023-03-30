@@ -18,7 +18,9 @@
     "onCommand:toms-tools.toggleCommentStyle",
     "onCommand:toms-tools.toggleTestFile",
     "onCommand:toms-tools.runTestFile",
-    "onCommand:toms-tools.runTestFileWatch"
+    "onCommand:toms-tools.runTestFileWatch",
+    "onLanguage:vue",
+    "onLanguage:scss"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -47,6 +49,16 @@
           "when": "editorLangId == vue || editorLangId == javascript || editorLangId == typescript"
         }
       ]
+    },
+    "configuration": {
+      "title": "Tom's tools",
+      "properties": {
+        "tom.scssVar.variableFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "The path to the file that contains your SCSS variables"
+        }
+      }
     }
   },
   "scripts": {
