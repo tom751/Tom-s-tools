@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
 import runTestFile from './runTestFile'
+import ScssVarDefinitionProvider from './scssVarDefinitionProvider'
 import toggleCommentStyle from './toggleCommentStyle'
 import toggleTestFile from './toggleTestFile'
 
@@ -20,6 +21,12 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(toggleTestSub)
   context.subscriptions.push(runTestSub)
   context.subscriptions.push(runTestWatchSub)
+
+  const scssVarDefinitionProvider = vscode.languages.registerDefinitionProvider(
+    ['vue', 'scss'],
+    new ScssVarDefinitionProvider(),
+  )
+  context.subscriptions.push(scssVarDefinitionProvider)
 }
 
 // this method is called when your extension is deactivated
