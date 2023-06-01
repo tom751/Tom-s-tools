@@ -12,11 +12,8 @@ export default class ScssVarDefinitionProvider implements vscode.DefinitionProvi
       return []
     }
 
-    const wordRange = document.getWordRangeAtPosition(position)
-    let varName = document.getText(wordRange)
-    if (!varName.startsWith('$')) {
-      varName = `$${varName}`
-    }
+    const wordRange = document.getWordRangeAtPosition(position, /\$[a-zA-Z-]+/)
+    const varName = document.getText(wordRange)
 
     const line = document.lineAt(position)
     if (!line.text.includes(varName)) {
