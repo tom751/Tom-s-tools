@@ -4,11 +4,13 @@
     "enabled": true,
     "rules": {
       "recommended": true
-    }
+    },
+    "ignore": ["node_modules"]
   },
   "formatter": {
     "indentStyle": "space",
-    "lineWidth": 120
+    "lineWidth": 120,
+    "ignore": ["node_modules"]
   },
   "javascript": {
     "formatter": {
