@@ -46,8 +46,16 @@ to
 
 ### Monorepo go to definition improvements
 
-Improves go to definition functionality in vscode for monorepos. Configure path aliases under a new setting `tom.goToDefinition.pathAliases` with the key being the alias, and the value being the path to the folder within your workspace.
+Improves go to definition functionality in vscode for monorepos. Configure path aliases under a new setting `tom.tsMonorepoDefinitionProvider.pathAliases` with the key being the alias, and the value being the path to the folder within your workspace.
 
 For example '@core' being the alias and 'src/projects/core/src' being the path.
 
 If multiple definitions found, you can change `editor.gotoLocation.multipleDefinitions` to `goto`.
+
+### SCSS variable go to definition
+
+Allows ctrl + clicking on SCSS variables, providing all variables are defined in a single file. The file path must be configured with `tom.scssVar.variableFilePath`.
+
+### SCSS variable autocomplete
+
+Adds autocomplete for SCSS variables, `tom.scssVar.variableFilePath` must be set for this to work.
