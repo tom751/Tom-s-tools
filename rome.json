@@ -10,12 +10,17 @@
   "formatter": {
     "indentStyle": "space",
     "lineWidth": 120,
-    "ignore": ["node_modules"]
+    "ignore": ["node_modules", ".vscode"]
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
       "semicolons": "asNeeded"
     }
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
   }
 }

@@ -39,7 +39,10 @@ export default class TsMonorepoDefinitionProvider implements vscode.DefinitionPr
     const foundFiles = await vscode.workspace.findFiles(glob)
     if (foundFiles.length > 0) {
       const wordRange = document.getWordRangeAtPosition(position)
-      const importName = document.getText(new vscode.Range(wordRange!.start, wordRange!.end))
+      if (!wordRange) {
+        return []
+      }
+      const importName = document.getText(new vscode.Range(wordRange.start, wordRange.end))
 
       const fileUri = foundFiles[0]
       const doc = await vscode.workspace.openTextDocument(fileUri)
