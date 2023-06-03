@@ -21,6 +21,6 @@ jobs:
           node-version: 18
       - run: npm ci 
       - name: Lint
-        run: npm run lint
+        run: npm run lint:ci
       - name: Build
         run: npm run compile

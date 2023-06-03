@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-export default async function runTestFile(watch: boolean = false) {
+export default async function runTestFile(watch = false) {
   const editor = vscode.window.activeTextEditor
   if (editor) {
     let fileUri = editor.document.uri
