@@ -7,6 +7,7 @@ import toggleTestFile from './toggleTestFile'
 import ScssVarCompletionProvider from './scssVarCompletionProvider'
 import { readScssVarFile } from './utils/bootstrap'
 import { StateKeys } from './enums'
+import runModifiedTestFiles from './runModifiedTestFiles'
 
 export async function activate(context: vscode.ExtensionContext) {
   await readScssVarFile(context)
@@ -15,6 +16,9 @@ export async function activate(context: vscode.ExtensionContext) {
   const toggleTestSub = vscode.commands.registerCommand('toms-tools.toggleTestFile', () => toggleTestFile())
   const runTestSub = vscode.commands.registerCommand('toms-tools.runTestFile', () => runTestFile())
   const runTestWatchSub = vscode.commands.registerCommand('toms-tools.runTestFileWatch', () => runTestFile(true))
+  const runModifiedTestFilesSub = vscode.commands.registerCommand('toms-tools.runModifiedTestFiles', () =>
+    runModifiedTestFiles(),
+  )
 
   const scssVarDefinitionProvider = vscode.languages.registerDefinitionProvider(
     ['vue', 'scss'],
@@ -34,6 +38,7 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(toggleTestSub)
   context.subscriptions.push(runTestSub)
   context.subscriptions.push(runTestWatchSub)
+  context.subscriptions.push(runModifiedTestFilesSub)
   context.subscriptions.push(scssVarDefinitionProvider)
   context.subscriptions.push(defProvider)
   context.subscriptions.push(scssCompletionItemProvider)

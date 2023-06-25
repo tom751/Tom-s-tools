@@ -19,6 +19,7 @@
     "onCommand:toms-tools.toggleTestFile",
     "onCommand:toms-tools.runTestFile",
     "onCommand:toms-tools.runTestFileWatch",
+    "onCommand:toms-tools.runModifiedTestFiles",
     "onLanguage:vue",
     "onLanguage:scss",
     "onLanguage:typescript",
@@ -42,6 +43,10 @@
       {
         "command": "toms-tools.runTestFileWatch",
         "title": "TOM: Run test file and watch"
+      },
+      {
+        "command": "toms-tools.runModifiedTestFiles",
+        "title": "TOM: Run modified test files"
       }
     ],
     "menus": {

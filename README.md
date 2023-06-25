@@ -42,6 +42,10 @@ to
 
 `Run test file and watch`: The same as "run test file" but adds `--watch` to the end of the command.
 
+### Run modified test files
+
+`Run modified test files`: Uses Git to look at your changes, groups modified files by workspace and runs the tests for them. If a file has been modified but its related test hasn't, it will find and run that test. Note this only works if the test file is in the same directory as the file being tested.
+
 ## Intellisense
 
 ### Monorepo go to definition improvements
