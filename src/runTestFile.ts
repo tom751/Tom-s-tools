@@ -28,13 +28,11 @@ export default async function runTestFile(watch = false) {
       return
     }
 
-    const projectPath = fileName.slice(0, projectIndex)
-    const relativePath = vscode.workspace.asRelativePath(fileUri)
-
     const terminal = vscode.window.activeTerminal || vscode.window.createTerminal('Terminal')
     terminal.show()
 
-    const command = `cd ${projectPath} && yarn unit ${relativePath} ${watch ? '--watch' : ''}`
+    const projectPath = fileName.slice(0, projectIndex)
+    const command = `cd ${projectPath} && yarn unit ${fileUri.path} ${watch ? '--watch' : ''}`
     terminal.sendText(command)
   }
 }
