@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
-import TsMonorepoDefinitionProvider from './tsMonorepoDefinitionProvider'
-import runTestFile from './runTestFile'
-import ScssVarDefinitionProvider from './scssVarDefinitionProvider'
-import toggleCommentStyle from './toggleCommentStyle'
-import toggleTestFile from './toggleTestFile'
-import ScssVarCompletionProvider from './scssVarCompletionProvider'
+import TsMonorepoDefinitionProvider from './definition-providers/tsMonorepoDefinitionProvider'
+import runTestFile from './commands/runTestFile'
+import ScssVarDefinitionProvider from './definition-providers/scssVarDefinitionProvider'
+import toggleCommentStyle from './commands/toggleCommentStyle'
+import toggleTestFile from './commands/toggleTestFile'
+import ScssVarCompletionProvider from './completion-providers/scssVarCompletionProvider'
 import { readScssVarFile } from './utils/bootstrap'
 import { StateKeys } from './enums'
 
@@ -20,14 +20,15 @@ export async function activate(context: vscode.ExtensionContext) {
     ['vue', 'scss'],
     new ScssVarDefinitionProvider(),
   )
+  const defProvider = vscode.languages.registerDefinitionProvider(
+    ['javascript', 'typescript', 'vue'],
+    new TsMonorepoDefinitionProvider(),
+  )
+
   const scssCompletionItemProvider = vscode.languages.registerCompletionItemProvider(
     ['vue', 'scss'],
     new ScssVarCompletionProvider(context.globalState.get(StateKeys.ScssVars)),
     '$',
-  )
-  const defProvider = vscode.languages.registerDefinitionProvider(
-    ['javascript', 'typescript', 'vue'],
-    new TsMonorepoDefinitionProvider(),
   )
 
   context.subscriptions.push(toggleCommentSub)

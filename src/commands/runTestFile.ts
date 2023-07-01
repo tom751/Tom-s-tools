@@ -32,7 +32,7 @@ export default async function runTestFile(watch = false) {
     terminal.show()
 
     const projectPath = fileName.slice(0, projectIndex)
-    const command = `cd ${projectPath} && yarn unit ${fileUri.path} ${watch ? '--watch' : ''}`
+    const command = `cd ${projectPath} && npx vitest ${watch ? '' : 'run'} ${fileUri.path} `
     terminal.sendText(command)
   }
 }

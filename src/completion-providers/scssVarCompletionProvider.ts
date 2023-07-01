@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { isInStyleTag } from './utils/document'
+import { isInStyleTag } from '../utils/document'
 
 export default class ScssVarCompletionProvider implements vscode.CompletionItemProvider {
   constructor(private scssVars?: Map<string, string>) {}
