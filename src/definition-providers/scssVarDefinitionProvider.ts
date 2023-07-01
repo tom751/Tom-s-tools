@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { searchForVar } from '../utils/search'
+import { scssVarRegex, searchForVar } from '../utils/search'
 import { isInStyleTag } from '../utils/document'
 
 export default class ScssVarDefinitionProvider implements vscode.DefinitionProvider {
@@ -17,7 +17,7 @@ export default class ScssVarDefinitionProvider implements vscode.DefinitionProvi
       return []
     }
 
-    const wordRange = document.getWordRangeAtPosition(position, /\$[a-zA-Z-]+/)
+    const wordRange = document.getWordRangeAtPosition(position, scssVarRegex)
     const varName = document.getText(wordRange)
 
     const line = document.lineAt(position)

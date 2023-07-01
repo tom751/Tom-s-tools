@@ -7,6 +7,7 @@ import toggleTestFile from './commands/toggleTestFile'
 import ScssVarCompletionProvider from './completion-providers/scssVarCompletionProvider'
 import { readScssVarFile } from './utils/bootstrap'
 import { StateKeys } from './enums'
+import ScssVarHoverProvider from './hover-providers/scssVarHoverProvider'
 
 export async function activate(context: vscode.ExtensionContext) {
   await readScssVarFile(context)
@@ -31,6 +32,11 @@ export async function activate(context: vscode.ExtensionContext) {
     '$',
   )
 
+  const scssVarHoverProvider = vscode.languages.registerHoverProvider(
+    ['vue', 'scss'],
+    new ScssVarHoverProvider(context.globalState.get(StateKeys.ScssVars)),
+  )
+
   context.subscriptions.push(toggleCommentSub)
   context.subscriptions.push(toggleTestSub)
   context.subscriptions.push(runTestSub)
@@ -38,6 +44,7 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(scssVarDefinitionProvider)
   context.subscriptions.push(defProvider)
   context.subscriptions.push(scssCompletionItemProvider)
+  context.subscriptions.push(scssVarHoverProvider)
 }
 
 export function deactivate() {}

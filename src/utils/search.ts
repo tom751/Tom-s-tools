@@ -1,5 +1,7 @@
 import * as vscode from 'vscode'
 
+export const scssVarRegex = /\$[a-zA-Z-]+/
+
 export function searchForVar(doc: vscode.TextDocument, varName: string, lineStartsWith: string[] = ['']) {
   const lines = doc.getText().split('\n')
   for (let i = 0; i < lines.length; i++) {
