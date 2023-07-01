@@ -56,6 +56,10 @@ If multiple definitions found, you can change `editor.gotoLocation.multipleDefin
 
 Allows ctrl + clicking on SCSS variables, providing all variables are defined in a single file. The file path must be configured with `tom.scssVar.variableFilePath`.
 
+### SCSS variable hover
+
+Hover over a SCSS variable to see its value, `tom.scssVar.variableFilePath` must be set for this to work.
+
 ### SCSS variable autocomplete
 
 Adds autocomplete for SCSS variables, `tom.scssVar.variableFilePath` must be set for this to work.
