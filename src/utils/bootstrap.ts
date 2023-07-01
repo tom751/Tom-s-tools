@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import { StateKeys } from '../enums'
+import { scssVarRegex } from './search'
 
 export async function readScssVarFile(context: vscode.ExtensionContext): Promise<void> {
   const pathSetting = vscode.workspace.getConfiguration('tom.scssVar').get<string>('variableFilePath')
@@ -18,7 +19,7 @@ export async function readScssVarFile(context: vscode.ExtensionContext): Promise
   const scssVars = new Map<string, string>()
 
   for (const line of lines) {
-    const varName = line.match(/\$[a-zA-Z-]+/)
+    const varName = line.match(scssVarRegex)
     if (!varName) {
       continue
     }
