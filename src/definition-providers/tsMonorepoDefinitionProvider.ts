@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { searchForVar } from './utils/search'
+import { searchForVar } from '../utils/search'
 
 export default class TsMonorepoDefinitionProvider implements vscode.DefinitionProvider {
   async provideDefinition(

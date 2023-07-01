@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import { searchForVar } from './utils/search'
-import { isInStyleTag } from './utils/document'
+import { searchForVar } from '../utils/search'
+import { isInStyleTag } from '../utils/document'
 
 export default class ScssVarDefinitionProvider implements vscode.DefinitionProvider {
   async provideDefinition(
