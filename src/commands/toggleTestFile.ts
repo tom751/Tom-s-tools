@@ -8,12 +8,14 @@ export default function toggleTestFile() {
     const file = fileNameParts.pop() || ''
     const folder = fileNameParts.join('/')
     const fileNameWithoutExtension = file.split('.').shift() || ''
-    const isInTestFile = file.endsWith('.spec.ts')
+    const isInTestFile = file.endsWith('.spec.ts') || file.endsWith('.spec.tsx')
+    const isTsx = file.endsWith('.tsx')
+    const testFileName = `${fileNameWithoutExtension}.spec.${isTsx ? 'tsx' : 'ts'}`
 
     const params: SwitchFileParams = {
       folder,
-      fileNameToCreate: !isInTestFile ? `${fileNameWithoutExtension}.spec.ts` : undefined,
-      searchGlob: isInTestFile ? `${fileNameWithoutExtension}.{ts,js,vue}` : `${fileNameWithoutExtension}.spec.ts`,
+      fileNameToCreate: !isInTestFile ? testFileName : undefined,
+      searchGlob: isInTestFile ? `${fileNameWithoutExtension}.{ts,tsx,js,vue}` : testFileName,
     }
 
     switchFile(params)

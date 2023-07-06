@@ -32,7 +32,7 @@ to
 
 ### Toggle test file
 
-`Toggle test file`: Switches between `*.spec.ts` file and its implementation file. Creates the test file if it doesn't exist.
+`Toggle test file`: Switches between `*.spec.{ts,tsx}` file and its implementation file. Creates the test file if it doesn't exist.
 
 ### Run test file
 
