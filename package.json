@@ -48,7 +48,7 @@
       "commandPalette": [
         {
           "command": "toms-tools.toggleTestFile",
-          "when": "editorLangId == vue || editorLangId == javascript || editorLangId == typescript"
+          "when": "editorLangId == vue || editorLangId == javascript || editorLangId == typescript || editorLangId == typescriptreact"
         }
       ]
     },

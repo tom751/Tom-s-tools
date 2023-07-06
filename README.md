@@ -32,11 +32,11 @@ to
 
 ### Toggle test file
 
-`Toggle test file`: Switches between `*.spec.ts` file and its implementation file. Creates the test file if it doesn't exist.
+`Toggle test file`: Switches between `*.spec.{ts,tsx}` file and its implementation file. Creates the test file if it doesn't exist.
 
 ### Run test file
 
-`Run test file`: Opens a terminal, cd's to the correct workspace directory and runs `yarn unit` for the current open `*.spec.ts` file. If not in a test file, it will look for a `*.spec.ts` file that has the same name as the current open file and runs `yarn unit`.
+`Run test file`: Opens a terminal, cd's to the correct workspace directory and runs `yarn unit` for the current open `*.spec.{ts,tsx}` file. If not in a test file, it will look for a `*.spec.{ts,tsx}` file that has the same name as the current open file and runs `yarn unit`.
 
 ### Run test file and watch
 
