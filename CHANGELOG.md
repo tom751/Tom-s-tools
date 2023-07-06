@@ -1,9 +1,3 @@
 # Change Log
 
-All notable changes to the "toms-tools" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+See [releases](https://github.com/tom751/Tom-s-tools/releases) for latest change log.
