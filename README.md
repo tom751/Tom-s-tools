@@ -36,7 +36,7 @@ to
 
 ### Run test file
 
-`Run test file`: Opens a terminal, cd's to the correct workspace directory and runs `yarn unit` for the current open `*.spec.ts` file. If not in a test file, it will look for a `*.spec.ts` file that has the same name as the current open file and runs `yarn unit`.
+`Run test file`: Opens a terminal, cd's to the correct workspace directory and runs `yarn unit` for the current open `*.spec.{ts,tsx}` file. If not in a test file, it will look for a `*.spec.{ts,tsx}` file that has the same name as the current open file and runs `yarn unit`.
 
 ### Run test file and watch
 

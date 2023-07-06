@@ -8,11 +8,11 @@ export default async function runTestFile(watch = false) {
     const fileNameParts = fileName.split('/')
     const file = fileNameParts.pop() || ''
 
-    if (!file.endsWith('.spec.ts')) {
+    if (!file.endsWith('.spec.ts') && !file.endsWith('.spec.tsx')) {
       // Switch to the test file
       const folder = fileNameParts.join('/')
       const fileNameWithoutExtension = file.split('.').shift() || ''
-      const pattern = new vscode.RelativePattern(folder, `${fileNameWithoutExtension}.spec.ts`)
+      const pattern = new vscode.RelativePattern(folder, `${fileNameWithoutExtension}.spec.{ts,tsx}`)
 
       const vals = await vscode.workspace.findFiles(pattern)
       if (vals.length > 0) {
