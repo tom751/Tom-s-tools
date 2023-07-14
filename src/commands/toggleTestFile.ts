@@ -1,15 +1,14 @@
 import * as vscode from 'vscode'
+import { getDocumentFolderPath, getFileNameFromPath, getFileNameWithoutExtension } from '../utils/document'
 
 export default function toggleTestFile() {
   const editor = vscode.window.activeTextEditor
   if (editor) {
-    const fileName = editor.document.fileName
-    const fileNameParts = fileName.split('/')
-    const file = fileNameParts.pop() || ''
-    const folder = fileNameParts.join('/')
-    const fileNameWithoutExtension = file.split('.').shift() || ''
-    const isInTestFile = file.endsWith('.spec.ts') || file.endsWith('.spec.tsx')
-    const isTsx = file.endsWith('.tsx')
+    const folder = getDocumentFolderPath(editor.document.fileName)
+    const fileName = getFileNameFromPath(editor.document.fileName)
+    const fileNameWithoutExtension = getFileNameWithoutExtension(fileName)
+    const isInTestFile = fileName.endsWith('.spec.ts') || fileName.endsWith('.spec.tsx')
+    const isTsx = fileName.endsWith('.tsx')
     const testFileName = `${fileNameWithoutExtension}.spec.${isTsx ? 'tsx' : 'ts'}`
 
     const params: SwitchFileParams = {

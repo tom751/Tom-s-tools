@@ -1,17 +1,16 @@
 import * as vscode from 'vscode'
+import { getDocumentFolderPath, getFileNameFromPath, getFileNameWithoutExtension } from '../utils/document'
 
 export default async function runTestFile(watch = false) {
   const editor = vscode.window.activeTextEditor
   if (editor) {
     let fileUri = editor.document.uri
-    const fileName = editor.document.fileName
-    const fileNameParts = fileName.split('/')
-    const file = fileNameParts.pop() || ''
+    const fileName = getFileNameFromPath(editor.document.fileName)
 
-    if (!file.endsWith('.spec.ts') && !file.endsWith('.spec.tsx')) {
+    if (!fileName.endsWith('.spec.ts') && !fileName.endsWith('.spec.tsx')) {
       // Switch to the test file
-      const folder = fileNameParts.join('/')
-      const fileNameWithoutExtension = file.split('.').shift() || ''
+      const folder = getDocumentFolderPath(editor.document.fileName)
+      const fileNameWithoutExtension = getFileNameWithoutExtension(fileName)
       const pattern = new vscode.RelativePattern(folder, `${fileNameWithoutExtension}.spec.{ts,tsx}`)
 
       const vals = await vscode.workspace.findFiles(pattern)
@@ -23,7 +22,7 @@ export default async function runTestFile(watch = false) {
       }
     }
 
-    const projectIndex = fileName.lastIndexOf('/src/')
+    const projectIndex = editor.document.fileName.lastIndexOf('/src/')
     if (projectIndex === -1) {
       return
     }
@@ -31,7 +30,7 @@ export default async function runTestFile(watch = false) {
     const terminal = vscode.window.activeTerminal || vscode.window.createTerminal('Terminal')
     terminal.show()
 
-    const projectPath = fileName.slice(0, projectIndex)
+    const projectPath = editor.document.fileName.slice(0, projectIndex)
     const command = `cd ${projectPath} && npx vitest ${watch ? '' : 'run'} ${fileUri.path} `
     terminal.sendText(command)
   }
