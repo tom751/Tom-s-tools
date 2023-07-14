@@ -16,3 +16,18 @@ export function isInStyleTag(document: vscode.TextDocument, position: vscode.Pos
 
   return position.isAfter(styleTagStartLine.range.end) && position.isBefore(styleTagEndLine.range.end)
 }
+
+// Returns the path without the filename on the end
+export function getDocumentFolderPath(filePath: string): string {
+  return filePath.split('/').slice(0, -1).join('/')
+}
+
+// Returns just the filename from a path
+export function getFileNameFromPath(filePath: string): string {
+  return filePath.split('/').slice(-1).join('/')
+}
+
+// Returns the filename with an extension
+export function getFileNameWithoutExtension(fileName: string): string {
+  return fileName.split('.').slice(0, -1).join('.') || ''
+}
