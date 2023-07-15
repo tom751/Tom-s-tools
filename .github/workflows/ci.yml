@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  lint-test-build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,5 +22,7 @@ jobs:
       - run: npm ci 
       - name: Lint
         run: npm run lint:ci
+      - name: Test
+        run: npm t
       - name: Build
         run: npm run compile
