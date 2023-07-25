@@ -6,6 +6,7 @@ export default function toggleTestFile() {
   if (editor) {
     const folder = getDocumentFolderPath(editor.document.fileName)
     const fileName = getFileNameFromPath(editor.document.fileName)
+    const fileNameBeforeSpec = fileName.split('.spec.').shift()
     const fileNameWithoutExtension = getFileNameWithoutExtension(fileName)
     const isInTestFile = fileName.endsWith('.spec.ts') || fileName.endsWith('.spec.tsx')
     const isTsx = fileName.endsWith('.tsx')
@@ -14,7 +15,7 @@ export default function toggleTestFile() {
     const params: SwitchFileParams = {
       folder,
       fileNameToCreate: !isInTestFile ? testFileName : undefined,
-      searchGlob: isInTestFile ? `${fileNameWithoutExtension}.{ts,tsx,js,vue}` : testFileName,
+      searchGlob: isInTestFile ? `${fileNameBeforeSpec}.{ts,tsx,js,vue}` : testFileName,
     }
 
     switchFile(params)
@@ -36,9 +37,9 @@ function switchFile({ folder, fileNameToCreate, searchGlob }: SwitchFileParams) 
     } else if (fileNameToCreate) {
       // Create the file
       const filePath = vscode.Uri.file(`${folder}/${fileNameToCreate}`)
-      const wsedit = new vscode.WorkspaceEdit()
-      wsedit.createFile(filePath)
-      vscode.workspace.applyEdit(wsedit).then(
+      const workspaceEdit = new vscode.WorkspaceEdit()
+      workspaceEdit.createFile(filePath)
+      vscode.workspace.applyEdit(workspaceEdit).then(
         () => openDocument(filePath.fsPath),
         (err) => vscode.window.showErrorMessage('Error creating file', err),
       )
