@@ -36,11 +36,11 @@ to
 
 ### Run test file
 
-`Run test file`: Opens a terminal, cd's to the correct workspace directory and runs `yarn unit` for the current open `*.spec.{ts,tsx}` file. If not in a test file, it will look for a `*.spec.{ts,tsx}` file that has the same name as the current open file and runs `yarn unit`.
+`Run test file`: Opens a terminal, cd's to the correct workspace directory and runs `npx vitest run` for the current open `*.spec.{ts,tsx}` file. If not in a test file, it will look for a `*.spec.{ts,tsx}` file that has the same name as the current open file and runs `npx vitest run`. The command can be changed in the extension setting `tom.runTestFile.script`.
 
 ### Run test file and watch
 
-`Run test file and watch`: The same as "run test file" but adds `--watch` to the end of the command.
+`Run test file and watch`: The same as "run test file" but runs in watch mode. The command can be changed in the extension setting `tom.runTestFileWatch.script`.
 
 ## Intellisense
 
