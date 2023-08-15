@@ -67,6 +67,16 @@
           },
           "default": {},
           "description": "The path aliases that will be used when trying to navigate to an import definition in a TS/JS/Vue monorepo"
+        },
+        "tom.runTestFile.script": {
+          "type": "string",
+          "default": "npx vitest run",
+          "description": "The script to run when running the run test command"
+        },
+        "tom.runTestFileWatch.script": {
+          "type": "string",
+          "default": "npx vitest",
+          "description": "The script to run when running the run test and watch command"
         }
       }
     }
