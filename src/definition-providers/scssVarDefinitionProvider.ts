@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import { scssVarRegex, searchForVar } from '../utils/search'
 import { isInStyleTag } from '../utils/document'
+import { scssVarRegex, searchForVar } from '../utils/search'
 
 export default class ScssVarDefinitionProvider implements vscode.DefinitionProvider {
   async provideDefinition(
