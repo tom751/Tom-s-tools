@@ -1,13 +1,13 @@
 import * as vscode from 'vscode'
-import TsMonorepoDefinitionProvider from './definition-providers/tsMonorepoDefinitionProvider'
 import runTestFile from './commands/runTestFile'
-import ScssVarDefinitionProvider from './definition-providers/scssVarDefinitionProvider'
 import toggleCommentStyle from './commands/toggleCommentStyle'
 import toggleTestFile from './commands/toggleTestFile'
 import ScssVarCompletionProvider from './completion-providers/scssVarCompletionProvider'
-import { readScssVarFile } from './utils/bootstrap'
+import ScssVarDefinitionProvider from './definition-providers/scssVarDefinitionProvider'
+import TsMonorepoDefinitionProvider from './definition-providers/tsMonorepoDefinitionProvider'
 import { StateKeys } from './enums'
 import ScssVarHoverProvider from './hover-providers/scssVarHoverProvider'
+import { readScssVarFile } from './utils/bootstrap'
 
 export async function activate(context: vscode.ExtensionContext) {
   await readScssVarFile(context)
